@@ -5,7 +5,7 @@
 </p>
 
 
-START = > <a href="https://jogo-flappy-bird.vercel.app/">CONHECER O JOGO</a>
+START = > <a href="https://flappybirdv10.herokuapp.com/">CONHECER O JOGO</a>
 
 ## Iniciando 
 #### **INSTALAÇÃO**

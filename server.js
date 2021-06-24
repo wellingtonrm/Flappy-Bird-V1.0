@@ -22,5 +22,5 @@ app.get('/script', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`servidor rodando na porta ${process.env.PORT || port}`)
+    console.log(`servidor rodando na porta ${process.env.PORT}`)
 })
