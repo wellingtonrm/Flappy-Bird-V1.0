@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const port = 5000
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -22,5 +22,5 @@ app.get('/script', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`servidor rodando na porta ${process.env.PORT}`)
+    console.log(`servidor rodando na porta ${PORT}`)
 })
