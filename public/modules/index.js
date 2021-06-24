@@ -210,13 +210,14 @@ function criaCanos() {
                som_colizao.play();
                som_jogo.pause()
 
-            setTimeout(() => {
-                 mudarTela(Tela.INICIO)
-            }, 800);
+
+               mudarTela(Tela.INICIO)
 
          
 
            if(cabecaFlappy <= par.canoCeuY){
+               
+             
                return true
            }
            if(peFlappy >= par.canoChaoY){
@@ -234,8 +235,8 @@ function criaCanos() {
                Canos.pares.push({
 
                    x:canvas.width,
-                   y: -350
-                   //y: -150 * (Math.random() + 1)
+                   
+                   y: -150 * (Math.random() + 1)
                });
             }
 
@@ -243,7 +244,7 @@ function criaCanos() {
                 par.x = par.x - 2
 
                 if(Canos.temColisaoCanos(par)){
-
+                    return Canos.temColisaoCanos(par);
                 }
 
                 if(par.x + Canos.largura <= 0 ){
@@ -324,9 +325,13 @@ Tela.JOGO = {
         globais.flappyBird.pula();
     },
     atualiza: () => {
-        globais.flappyBird.atualiza();
-        globais.Chao.atualiza();
-        globais.Canos.atualiza();
+        
+      
+           globais.Chao.atualiza()
+           globais.flappyBird.atualiza();
+           globais.Canos.atualiza();
+       
+        
 
     }
 }
