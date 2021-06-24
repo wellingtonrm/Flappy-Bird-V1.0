@@ -202,6 +202,31 @@ function criaCanos() {
 
         },
         pares: [],
+        temColisaoCanos:(par)=>{
+            const cabecaFlappy= globais.flappyBird.y;
+            const peFlappy = globais.flappyBird.y + globais.flappyBird.altura
+
+           if(globais.flappyBird.x >= par.x){
+               som_colizao.play();
+               som_jogo.pause()
+
+            setTimeout(() => {
+                 mudarTela(Tela.INICIO)
+            }, 800);
+
+         
+
+           if(cabecaFlappy <= par.canoCeuY){
+               return true
+           }
+           if(peFlappy >= par.canoChaoY){
+               return true
+           }
+
+           //return true
+           } 
+           return false
+        },
         atualiza: () => {
             const passou100Frames = frames % 100 === 0;
 
@@ -209,12 +234,23 @@ function criaCanos() {
                Canos.pares.push({
 
                    x:canvas.width,
-                   y: -150 * (Math.random() + 1)
+                   y: -350
+                   //y: -150 * (Math.random() + 1)
                });
             }
 
             Canos.pares.forEach((par) => {
                 par.x = par.x - 2
+
+                if(Canos.temColisaoCanos(par)){
+
+                }
+
+                if(par.x + Canos.largura <= 0 ){
+                    
+                    Canos.pares.shift()
+
+                }
             })
         }
     }
@@ -255,24 +291,24 @@ const Tela = {
     INICIO: {
         inicializa: () => {
             globais.flappyBird = criaFlappyBird()
-            globais.Chao = criaChao();
             globais.Canos = criaCanos();
+            globais.Chao = criaChao();
         },
         desenha: () => {
 
             Background.desenha();
-
             globais.flappyBird.desenha();
+            globais.Canos.desenha(); 
             globais.Chao.desenha();
-            globais.Canos.desenha();
             mensagemGetReady.desenha();
+            globais.Canos.desenha();
         },
         click: () => {
             mudarTela(Tela.JOGO)
             som_jogo.play()
         },
         atualiza: () => {
-
+           
         }
 
     }
@@ -281,9 +317,8 @@ Tela.JOGO = {
     desenha: () => {
         Background.desenha();
         globais.flappyBird.desenha();
+         globais.Canos.desenha();
         globais.Chao.desenha();
-        globais.Canos.desenha();
-
     },
     click: () => {
         globais.flappyBird.pula();
